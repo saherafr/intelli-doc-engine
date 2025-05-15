@@ -23,7 +23,7 @@ It’s not just an OCR tool — it’s a foundation for custom document intellig
 - Cloud Storage: AWS S3
 - Deployment: Docker
 
-## BackStory
+## Backstory
 
 I’ve always been curious about how Docker and the cloud actually work — and why every serious project uses them. Reading the documentation made me realize Docker isn’t just a dev tool — it ensures environment consistency, simplifies deployment, and scales beautifully. The cloud adds flexible storage, global reach, and pay-as-you-go compute. I knew I had to try them together.
 
@@ -33,46 +33,63 @@ You might say: "Can’t ChatGPT already answer questions from PDFs?" Sure — bu
 
 That’s where IntelliDoc comes in — a customizable, scalable backend to build private AI document assistants for real-world use cases.
 
-##Folder Structure
+## Folder Structure
 
 intelli-doc-engine/
 │
 ├── app/
-│   └── routes/          # FastAPI route handlers
+│ └── routes/ # FastAPI route handlers
 │
-├── services/            # S3, OCR, NLP, NER, QA logic
-├── main.py              # App entry point
-├── Dockerfile           # For containerization
-├── requirements.txt     # Dependencies
-├── .env.example         # Environment config template
-└── README.md            # You're here!
+├── services/ # S3, OCR, NLP, NER, QA logic
+├── main.py # App entry point
+├── Dockerfile # For containerization
+├── requirements.txt # Dependencies
+├── .env.example # Environment config template
+└── README.md # You're here
 
-##API Overview
---All routes can be tested at /docs.
 
---POST /upload/
-  Upload a document
-  Accepts: PDF or image
-  Returns: S3 URL of the uploaded file
+## API Overview
 
---POST /analyze/
-  Run the full pipeline (OCR → NER → Summary → QA) on a document
-  Input: S3 file path
-  Returns: Extracted text, entities, summary, and answer
-  
+All routes can be tested at `/docs`.
+
+### POST /upload/
+
+- Upload a document
+- Accepts: PDF or image
+- Returns: S3 URL of the uploaded file
+
+### POST /analyze/
+
+- Run the full pipeline (OCR → NER → Summary → QA)
+- Input: S3 file path
+- Returns: Extracted text, named entities, summary, and answer
+
 ## Installation
 
 ```bash
 git clone https://github.com/saherafr/intelli-doc-engine.git
 cd intelli-doc-engine
 pip install -r requirements.txt
-## Enviroment Setup
+Environment Setup
+This project requires AWS credentials and configuration for uploading files to Amazon S3.
+Create a .env file in the root directory based on .env.example with the following content:
+
+env
+Copy code
 AWS_ACCESS_KEY_ID=your-access-key
 AWS_SECRET_ACCESS_KEY=your-secret-key
 AWS_REGION=ca-central-1
 AWS_S3_BUCKET=intellidoc-bucket
-'''
-## Docker Support
+Make sure to keep this file private. It is already excluded from Git tracking via .gitignore.
+
+Docker Support
+You can build and run IntelliDoc Engine using Docker for an isolated, production-ready environment.
+
+Build the Docker image:
 docker build -t intellidoc-engine .
+Run the container with your environment file:
+
 docker run --env-file .env -p 8000:8000 intellidoc-engine
-Visit http://localhost:8000/docs to explore the API using Swagger.
+Once running, you can access the API docs at:
+http://localhost:8000/docs
+
