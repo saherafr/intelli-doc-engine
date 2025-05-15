@@ -71,12 +71,10 @@ git clone https://github.com/saherafr/intelli-doc-engine.git
 cd intelli-doc-engine
 pip install -r requirements.txt
 ```
-##Environment Setup
+## Environment Setup
 
 This project requires AWS credentials and configuration for uploading files to Amazon S3.
 Create a .env file in the root directory based on .env.example with the following content:
-
-env
 
 AWS_ACCESS_KEY_ID=your-access-key
 AWS_SECRET_ACCESS_KEY=your-secret-key
@@ -84,7 +82,7 @@ AWS_REGION=ca-central-1
 AWS_S3_BUCKET=intellidoc-bucket
 Make sure to keep this file private. It is already excluded from Git tracking via .gitignore.
 
-##Docker Support 
+## Docker Support 
 
 You can build and run IntelliDoc Engine using Docker for an isolated, production-ready environment.
 
