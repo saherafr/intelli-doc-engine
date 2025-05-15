@@ -77,9 +77,13 @@ This project requires AWS credentials and configuration for uploading files to A
 Create a .env file in the root directory based on .env.example with the following content:
 
 AWS_ACCESS_KEY_ID=your-access-key
+
 AWS_SECRET_ACCESS_KEY=your-secret-key
+
 AWS_REGION=ca-central-1
+
 AWS_S3_BUCKET=intellidoc-bucket
+
 Make sure to keep this file private. It is already excluded from Git tracking via .gitignore.
 
 ## Docker Support 
@@ -87,9 +91,13 @@ Make sure to keep this file private. It is already excluded from Git tracking vi
 You can build and run IntelliDoc Engine using Docker for an isolated, production-ready environment.
 
 -Build the Docker image:
+
 docker build -t intellidoc-engine .
+
 -Run the container with your environment file:
+
 docker run --env-file .env -p 8000:8000 intellidoc-engine
+
 Once running, you can access the API docs at:
 http://localhost:8000/docs
 
