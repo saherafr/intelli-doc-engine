@@ -35,7 +35,7 @@ That’s what IntelliDoc is built for — a foundation to power custom, secure, 
 
 ---
 
-## 🔁 System Flow Diagram (Markdown UML-style)
+##  System Flow Diagram 
 
 ```plaintext
 Client Request (PDF/Image Upload or Text + Question)
