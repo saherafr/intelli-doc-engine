@@ -32,19 +32,48 @@ Now, why IntelliDoc?
 You might say, “Can’t ChatGPT already answer questions from PDFs?” Sure — but it's trained on general internet data and shared with everyone. What if I need a private, domain-specific system, fine-tuned for internal reports, academic documents, or company policies?
 
 That’s what IntelliDoc is built for — a foundation to power custom, secure, and intelligent document analysis at scale.
-## Folder Structure
 
-intelli-doc-engine/
-│
-├── app/                   # FastAPI route handlers
-│   └── routes/
-│
-├── services/              # Core logic for S3, OCR, NLP, NER, QA
-├── main.py                # App entry point
-├── Dockerfile             # For containerization
-├── requirements.txt       # Dependencies
-├── .env.example           # Environment config template
-└── README.md              # This file
+---
+
+## 🔁 System Flow Diagram (Markdown UML-style)
+
+```plaintext
+Client Request (PDF/Image Upload or Text + Question)
+        │
+        ▼
+[ FastAPI Route Handler ]
+        │
+        ▼
+[ File Type Check ]
+        │
+        ├──► If Image/PDF:
+        │       │
+        │       ▼
+        │   [ OCR Service ]
+        │       │
+        │       ▼
+        │   Extracted Text
+        │
+        └──► If Plain Text:
+                │
+                ▼
+         Pass as-is
+        ▼
+[ NLP Service (Preprocessing) ]
+        │
+        ▼
+[ Route Forks Here ]
+        │
+        ├──► [ NER Service ]
+        │         │
+        │         ▼
+        │   Named Entities
+        │
+        └──► [ QA Service ]
+                  │
+                  ▼
+         Answer based on question + doc
+
 
 
 
